@@ -70,11 +70,11 @@ def normalize_text_with_parity_bits(data):
     # bytes_to_add = (_mod - (data_size % _mod))
     bytes_to_add = get_mod_diff(_mod, data_size)
     # print("Agregaremos", bytes_to_add)
-    if not is_perfect_square(bytes_to_add + data_size):
-        bytes_to_add = ((bytes_to_add + data_size) * 2) - data_size
-        size = bytes_to_add + data_size
-    else:
-        size = bytes_to_add + data_size
+    # if not is_perfect_square(bytes_to_add + data_size):
+    #     bytes_to_add = ((bytes_to_add + data_size) * 2) - data_size
+    #     size = bytes_to_add + data_size
+    # else:
+    size = bytes_to_add + data_size
 
     number_of_parity_checks = round(math.log2(size))
     # print("Parity", number_of_/parity_checks)
@@ -141,7 +141,7 @@ def hamming_original(corrected, dictionary):
 # print(16-(32 % 16))
 # bit_instance = bitarray()
 # bit_instance.frombytes(
-#     "block pasamos un monton de tiempo pero aunquesea encontramos el maldito error block pasamos un monton de tiempo pero aunquesea encontramos el maldito error".encode(ENCODING_FORMAT))
+#     "Perro todo bien aesto ya aguanta mas".encode(ENCODING_FORMAT))
 # data = bit_instance.to01()
 
 # dictionary, normalized = normalize_text_with_parity_bits(bit_instance.to01())
