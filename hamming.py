@@ -4,7 +4,7 @@ from constants import *
 from functools import reduce
 import math
 import operator as op
-
+import time
 
 def get01(data):
     bit_instance = bitarray()
@@ -51,7 +51,6 @@ def set_parity_values(bitstring_represntation, number_of_parity_checks):
         else:
             parity_values[index_to_check] = "1"
         sum_of_parity = 0
-
     # Set values
     bitstring_represntation_list = list(bitstring_represntation)
 
@@ -60,6 +59,7 @@ def set_parity_values(bitstring_represntation, number_of_parity_checks):
     if sum([int(i) for i in bitstring_represntation_list if int(i)]) % 2 != 0:
         bitstring_represntation_list[0] = "1"
     return ''.join(bitstring_represntation_list)
+    
 
 
 def normalize_text_with_parity_bits(data):
@@ -93,6 +93,7 @@ def normalize_text_with_parity_bits(data):
             output += "0"
         else:
             output += _data[index]
+    
     return parity_dictionary, set_parity_values(output, number_of_parity_checks)
 
 
@@ -113,6 +114,7 @@ def correct_dummies(data):
 
 
 def hamming_correct(data):
+    start = time.time()
     index_error = reduce(lambda x, y: x ^ y, [i
                          for (i, v) in enumerate(data) if int(v)])
     if index_error != 0:
@@ -121,7 +123,8 @@ def hamming_correct(data):
         data = list(data)
         data[error_position] = "0" if data[error_position] == "1" else "1"
         data = ''.join(data)
-
+    end = time.time()
+    print("Correction time: {}".format(end-start))
     return data
 
 

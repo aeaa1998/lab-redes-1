@@ -74,4 +74,4 @@ else:
     if fletcher["dec"] == json_payload["dec"]:
         print("No hubieron errores en el mensaje")
     else:
-        print("Se encontro error")
+        print("Se encontro error\n {}".format(fletcher["time"]))

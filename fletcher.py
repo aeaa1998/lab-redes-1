@@ -1,3 +1,4 @@
+import time
 class FletcherChecksumStr:
     """
     This class contains static methods for working with STRING values as input parameters.
@@ -10,13 +11,15 @@ class FletcherChecksumStr:
         Returns the Fletcher16 checksum value in decimal and hexadecimal format.
         8-bit implementation (16-bit checksum)
         """
+        start = time.time()
         sum1, sum2 = int(), int()
         data = data.encode()
         for index in range(len(data)):
             sum1 = (sum1 + data[index]) % 255
             sum2 = (sum2 + sum1) % 255
         result = (sum2 << 8) | sum1
-        return {"dec": result, "hex": hex(result)}
+        end = time.time()
+        return {"dec": result, "hex": hex(result),"time":end-start}
 
     @staticmethod
     def get_fletcher32(data: str) -> dict:
